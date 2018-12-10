@@ -3,7 +3,7 @@ node_js: 10
 before_script:
   - npm run build
 before_deploy:
-  - PUBLIC_URL=https://nicolas-van.github.io/sai-synth/ npm run build
+  - PUBLIC_URL=https://nicolas-van.github.io/jsgame/ npm run build
 deploy:
   provider: pages
   skip-cleanup: true
