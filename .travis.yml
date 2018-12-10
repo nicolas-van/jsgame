@@ -2,7 +2,7 @@ language: node_js
 node_js: 10
 before_script:
   - npm run build
-test:
+script:
   - echo true
 before_deploy:
   - PUBLIC_URL=https://nicolas-van.github.io/jsgame/ npm run build
