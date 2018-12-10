@@ -89,9 +89,9 @@ var jsgame = function(container) {
 
         _.each(_.range(state.board_size[0]), function(i) {
             _.each(_.range(state.board_size[1]), function(j) {
-                if (state.stage[i][j] == 'x') {
+                if (state.stage[i][j] === 'x') {
                     looping_draw(state.screen, state.wall, [i * state.unit_size[0], j * state.unit_size[1]]);
-                } else if (state.stage[i][j] == 'p') {
+                } else if (state.stage[i][j] === 'p') {
                     looping_draw(state.screen, state.round, [i * state.unit_size[0], j * state.unit_size[1]]);
                 }
             });
@@ -108,43 +108,22 @@ var jsgame = function(container) {
         var pac = state.pac = {};
         _.each(_.range(stagetxt.length), function(i) {
             var c = stagetxt[i];
-            if (c == 'x') {
+            if (c === 'x') {
                 stage[stage.length - 1].push("x");
-            } else if (c == ' ') {
+            } else if (c === ' ') {
                 stage[stage.length - 1].push("p");
-            } else if (c == '\n') {
+            } else if (c === '\n') {
                 stage.push([]);
-            } else if (c == 'F') {
+            } else if (c === 'F') {
                 stage[stage.length - 1].push('p');
                 phantoms.push({rect: {coord: [stage[stage.length - 1].length -1, stage.length - 1], size: stage.unit_size}});
-            } else if (c == 'S') {
+            } else if (c === 'S') {
                 stage[stage.length - 1].push(' ');
                 pac.rect = {coord: [stage[stage.length - 1].length -1, stage.length - 1], size: stage.unit_size};
             }
         });
         state.stage = _.zip.apply(_, stage);
 
-    };
-
-    var looping_test_collision = function(screen, r1, r2) {
-        if (test_collision(r1, r2)) return true;
-        var func = function(r1, r2) {
-            if (test_collision(r1, {coord: [r2.coord[0], r2.coord[1] - screen.height], size: r2.size})) return true;
-            if (test_collision(r1, {coord: [r2.coord[0] - screen.width, r2.coord[1]], size: r2.size})) return true;
-            if (test_collision(r1, {coord: [r2.coord[0] - screen.width, r2.coord[1] - screen.height], size: r2.size})) return true;
-            return false;
-        }
-        if (func(r1, r2)) return true;
-        if (func(r2, r1)) return true;
-        return false;
-    };
-
-    var test_collision = function(r1, r2) {
-        if (r1.coord[1] + r1.size[1] < r2.coord[1]) return false;
-        if (r1.coord[1] > r2.coord[1] + r2.size[1]) return false;
-        if (r1.coord[0] + r1.size[0] < r2.coord[0]) return false;
-        if (r1.coord[0] > r2.coord[0] + r2.size[0]) return false;
-        return true;
     };
 
     var looping_draw = function(screen, image, coord) {
