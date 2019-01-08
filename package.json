@@ -13,6 +13,6 @@
   },
   "scripts": {
     "dev": "parcel public/index.html",
-    "build": "parcel build public/index.html"
+    "build": "parcel build public/index.html --public-url ./"
   }
 }

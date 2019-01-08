@@ -5,7 +5,7 @@ before_script:
 script:
   - echo true
 before_deploy:
-  - PUBLIC_URL=https://nicolas-van.github.io/jsgame/ npm run build
+  - npm run build
 deploy:
   provider: pages
   skip-cleanup: true
